@@ -1,0 +1,67 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #logo {
+    margin-right: auto;
+  }
+  
+  #search {
+    margin-left: auto; 
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between; 
+  }
+  
+  .left-column {
+    flex: 1;
+  }
+
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .file-chooser {
+    align-items: center; /* 要素を中央に揃える */
+    text-align: center; /* テキストとボタンを中央に揃える */
+  }
+
+  main {
+    border: 2px solid grey; /* 2ピクセルの黒い枠線を追加 */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+
+  #formFile::placeholder {
+    color: black; /* プレースホルダーテキストの色を黒に設定 */
+  }
+
+  .name-content-file {
+    margin-bottom: 50px;
+  }
+
+  .outer-container {
+    background-color: green;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+  }
+  
+  #search-bar {
+    margin-right: 10px; /* Input要素とButton要素の間隔を調整 */
+    display: inline-block;
+  }
+
+  #search-button {
+    display: inline-block;
+  }

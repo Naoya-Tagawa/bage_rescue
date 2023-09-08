@@ -1,0 +1,16 @@
+/* Hellologo.css */
+
+.hellologo {
+    opacity: 0; /* 初めに非表示 */
+    animation: fade-in 2s ease-in-out forwards; /* フェードインアニメーション（5秒間、イーズイン/イーズアウト、最終ステップで透明度を維持） */
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0; /* 開始時に完全に非表示 */
+    }
+    100% {
+      opacity: 1; /* 終了時も完全に表示（透明度を1のままに） */
+    }
+  }
+  
