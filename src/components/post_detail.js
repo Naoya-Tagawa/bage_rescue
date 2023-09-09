@@ -45,34 +45,32 @@ function Detail() {
         .catch((error) => {
           console.log(error);
         });
-    }, []);
+    }, [gsReference]);
 
     return (
-      <img src={imgurl} alt='post' className="w-5/6  max-w-sm" />
+      <img src={imgurl} alt='post' className="object-fill" />
     );
   }
 return (
   <div className='bg-cover bg-center overflow-hidden font-bold text-stone-800 min-h-screen' style={{ backgroundImage: `url(${bgp})` }}>
     <div className="border-b-2 border-stone-800">
-      <div className='relative flex flex-col  font-bold p-2'>
-        <div className='flex  justify-between  text-3xl'>
-          <button onClick={returntohome} className="absolute left-5">
-            <img src='./logo_small.svg' alt="logo" className="w-48" />
+      <div className='md:relative flex flex-col   justify-between font-bold p-2'>
+          <button onClick={returntohome} className=" md:absolute left-5">
+            <img src='./logo_small.svg' alt="logo" className="w-36 md:w-48" />
           </button>
-          <div className="flex-grow  justify-center text-3xl p-5">
+          <div className="flex-grow  justify-center text-2xl md:text-3xl p-5">
             <p>{post.post_name}</p>
           </div>
-          <div className="absolute right-10">
-            <FavoriteIcon style={{ fontSize: "40px", color: isliked ? 'red' : 'gray' }} onClick={togglelike} />
+          <div className="text-xl md:text-2xl absolute right-10">
+            <FavoriteIcon style={{ fontSize: "35px", color: isliked ? 'red' : 'gray' }} onClick={togglelike} />
             <p>{post.like_amount}</p>
           </div>
-        </div>
         <div className='w-full flex justify-center'>
             <div className="flex justify-center p-2 w-6/12">
                 {Getimg(post)}
             </div>
         </div>
-        <div className=" my-10 text-2xl">
+        <div className=" my-10 text-lg md:text-2xl">
           {post.overview}
         </div>
         
@@ -80,25 +78,25 @@ return (
     </div>
 
     <div>
-      <div className="font-bold text-stone-800 text-3xl mt-5">
+      <div className="font-bold text-stone-800 text-2xl md:text-3xl mt-5">
         <p>手順</p>
       </div>
       {post.post_instruction && post.post_instruction.map((step, index) => (
-        <div key={index} className="my-10 mx-20 flex flex-col gap-4 p-4 bg-stone-800 rounded-xl shadow-md">
-          <div className=' py-5 rounded-xl w-full bg-white'>
-            <p className="flex flex-1 text-3xl ml-10">{index + 1}</p>
-            <div className="flex justify-center items-center ">
+        <div key={index} className="my-10 mx-auto flex flex-col gap-4 p-4 bg-stone-800 rounded-xl shadow-md w-2/3 md:w-2/3">
+          <div className=' py-1 md:py-5 rounded-xl w-full bg-white'>
+            <p className="flex flex-1 text-lg md:text-3xl ml-10">{index + 1}</p>
+            <div className="flex justify-center items-center">
               {Get_image(step)}
             </div>
           </div>
-          <div className="flex flex-col items-center text-slate-100 text-2xl p-5">
+          <div className="flex flex-col items-center text-slate-100 text-sm md:text-2xl p-5">
             {step.process_explanation}
           </div>
         </div>
       ))}
     
 
-    <div className="flex-1 flex-col text-2xl text-stone-500 text-left">
+    <div className="flex-1 flex-col text-lg md:text-2xl text-stone-500 text-left">
       {post.tag_name && post.tag_name.map((step, index) => (
         <div key={index} className="p-4 inline-block ">
           #{step}
@@ -107,7 +105,7 @@ return (
     </div>
 
     {post.timestamp && (
-      <div className="flex-1 flex-col text-2xl text-stone-500 text-left border-b-2 border-stone-800 p-3">
+      <div className="flex-1 flex-col text-lg md:text-2xl text-stone-500 text-left border-b-2 border-stone-800 p-3">
         投稿日時: {dateStr}
       </div>
     )}
@@ -120,15 +118,15 @@ return (
             <p>コメント</p>
           </div>
         </div>
-        <div className="flex flex-nowrap justify-center overflow-y-auto max-h-[330px]" >
+        <div className="flex flex-nowrap justify-center overflow-x-auto overflow-y-auto max-h-[330px]" >
           {post.comment.map((step, index) => (
-            <div key={index} className="my-10 mx-5 gap-4 p-4 bg-stone-800 rounded-xl shadow-md ">
+            <div key={index} className="my-10 mx-5 gap-4 p-4 bg-stone-800 rounded-xl shadow-md w-[1000px]">
               <div className=' py-8 rounded-xl bg-white'>
                 <div className="flex flex-row">
-                  <p className="text-3xl text-left ml-2">ID:{step.user_id}</p>
+                  <p className=" text-lg md:text-3xl text-left ml-2">ID:{step.user_id}</p>
                   <AccountBoxIcon style={{ fontSize: "40px" }} />
                 </div>
-                <div className="flex justify-center items-center text-2xl p-3">
+                <div className="flex justify-center items-center text-lg md:text-2xl p-3">
                   {step.comment_content}
                 </div>
               </div>

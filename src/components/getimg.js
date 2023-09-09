@@ -17,6 +17,6 @@ export function Getimg(post) {
     }
   }, [post]);
   return (
-    <img src={imgurl} alt='post' />
+    <img src={imgurl} alt='post' className='object-fill ' />
   )
 }

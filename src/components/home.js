@@ -7,8 +7,13 @@ import { useState, useEffect } from 'react';
 import SearchBar from "./searchbar";
 import Login from "./login";
 import RecievePosts from "./recieveposts";
+import '../index.css'
+
 function Home() {
   const [showHellologo, setShowHellologo] = useState(true);
+  const handleHellologoClick = () => {
+    setShowHellologo(false);
+  };
 
   useEffect(() => {
     // スクロールが発生したときにHellologoを非表示にする
@@ -26,9 +31,9 @@ function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div >
       {showHellologo && <Hellologo />}
-      <div className='bg-cover bg-center overflow-hidden' style={{ backgroundImage:`url(${bgp})` }}>
+      <div className='bg-cover bg-center' style={{ backgroundImage:`url(${bgp})` }}>
         <div className="flex flex-col  min-h-screen ">
           <div className=' md:relative flex flex-col items-center   md:flex-row md:items-center'>
             <div className="md:absolute left-5  flex flex-col ">

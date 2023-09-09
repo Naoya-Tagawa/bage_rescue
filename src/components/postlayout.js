@@ -24,13 +24,13 @@ function Post ({post}) {
     return (
         <>
 
-          <div className='flex flex-col gap-4 p-4 bg-stone-800 rounded-xl shadow-md w-full hover:shadow-2xl hover:scale-105 duration-200'>
+          <div className='flex flex-col gap-4 p-4 bg-stone-800 rounded-xl shadow-md w-full hover:shadow-2xl hover:scale-105 duration-200 '>
           <button onClick={() =>handleButtonClick(post)}>
             <div className='flex justify-center py-8 rounded-xl w-full bg-white'>
               {Getimg(post)}
             </div>
           </button>
-            <div className='p-2 text-slate-300 text-2xl'>
+            <div className='p-2 text-slate-300 text-lg md:text-2xl'>
               <p>{post.post_name}</p>
               <div className='flex flex-row justify-center'>
                 {/* <p>投稿日時: {dateStr}</p> */}

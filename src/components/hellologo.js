@@ -5,15 +5,15 @@ function Hellologo() {
   return (
       <div className='hellologo fade-in'>
         
-        <body className='bg-cover bg-center 'style={{backgroundImage:`url(${bgp})`}}>
-          <div className="flex flex-col mx-auto min-h-screen">
-            <div className=" overflow-hidden h-screen w-screen flex flex-col justify-center items-center ">
+        <div className='bg-cover bg-center 'style={{backgroundImage:`url(${bgp})`}}>
+          
+            <div className="mx-auto  flex  justify-center items-center min-h-screen">
               <img src='./logo2.svg' alt="logo"/>
 
             </div>
 
-          </div>
-        </body>
+          
+        </div>
       </div>
 
       
