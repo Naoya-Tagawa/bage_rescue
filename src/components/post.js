@@ -7,6 +7,7 @@ import SearchBar from "./searchbar";
 import bgp from '../assets/image/bgp4.svg';
 import { AddPost } from "./addposts";
 import Chip from "@mui/material/Chip";
+import ImageIcon from '@mui/icons-material/Image';
 
 function Post() {
   const [postName, setPostName] = useState("");
@@ -155,8 +156,8 @@ const handleAddInstructionImg = async (e, index) => {
     <div className='bg-cover bg-center capitalize font-bold' style={{ backgroundImage:`url(${bgp})` }}>
     <Container>
       
-      <header className="relative">
-        <div id="logo" className="absolute left-5">
+      <header className="flex flex-col md:relative">
+        <div id="logo" className=" flex justify-center lg:absolute md:left-5">
           <Link to="/">
             <img src="logo_small.svg" alt="ロゴ" className="w-48"/>
           </Link>
@@ -170,42 +171,43 @@ const handleAddInstructionImg = async (e, index) => {
         <Container className="container">
           <div className="left-column">
 
-            <Typography variant="h3" color = "secondary">投稿フォーム</Typography>
+            <p className="text-5xl font-bold text-stone-800 mb-5">投稿フォーム</p>
             
 
             {/* <form id="recipe-form" action="/post" onSubmit={handleFormSubmit} method="POST" enctype="multipart/form-data"> */}
             <form id="recipe-form" action="/post" method="POST" enctype="multipart/form-data">
 
               <div class="name-content-file">
-                <div class="md:flex md:items-center mb-6">
-                  <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                      題名：
+                <div className=" flex flex-col justify-center items-center mb-6">
+
+                  
+                  
+                    <label class=" text-gray-500 font-bold md:text-center mb-1 md:mb-0 ">
+                      題名
                     </label>
-                  </div>
-                  <div class="md:w-1/3">
-                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
+                  
+                  
+                    <input class=" bg-gray-200 appearance-none border-2 border-gray-200 rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
                     type="text"
                     value={postName}
                     onChange={(e) => setPostName(e.target.value)}>
                     </input>
                   </div>
-                </div>
+                
 
-                <div class="md:flex md:items-center mb-6">
-                  <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                      内容：
+                <div class="mb-6">
+                    <label class="block text-gray-500 font-bold text-center mb-1 md:mb-0 pr-4">
+                      内容
                     </label>
-                  </div>
-                  <div class="md:w-2/3">
+                  
+                  
                     <textarea
-                      class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                      class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-1/2 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       rows="4"
                       value={overview}
                       onChange={(e) => setOverview(e.target.value)}>
                     </textarea>
-                  </div>
+                  
                 </div>
 
                 <div class="upload-container">
@@ -219,12 +221,12 @@ const handleAddInstructionImg = async (e, index) => {
 
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-900 m-4" id="file_input_help">SVG, PNG, JPG or GIF.</p>
 
-                <div class="md:flex md:items-center mb-6">
-                  <div class="md:w-1/3">
+                <div class=" flex flex-col justify-center items-center mb-6">
+              
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                      タグ：
+                      タグ
                     </label>
-                  </div>
+                  
                   <div
                     id="chips-initial"
                     data-te-chips-initial
@@ -269,25 +271,28 @@ const handleAddInstructionImg = async (e, index) => {
               <hr />
               <br></br>
 
-              <Typography variant="h4" color="secondary">手順</Typography>
-              <div class="w-full p-3 m-4">
+              <p className="text-5xl font-bold text-stone-800 ">手順</p>
+              <div class=" p-3 m-4 flex flex-col justify-center">
                 <div id="steps">
                   {instructions.map((instruction, index) => (
-                    <div class="flex rounded overflow-hidden border shadow shadow-lg m-4 bg-white" key={index}>
-                      <div className="step-img">
+                    <div className="flex flex-col justify-center">
+                      <p className="text-left text-2xl mx-5">{index+1}.</p>
+
+                    
+                    
+                    <div class="relative flex flex-row rounded overflow-hidden shadow shadow-lg m-4 " key={index}>
                         
                         {/* <img class="block h-auto w-full lg:w-48 flex-none bg-cover h-24" src="https://pbs.twimg.com/media/DrM0nIdU0AEhG5b.jpg"></img> */}
 
-						{/* { instruction["img"] && <img class="block h-auto w-full lg:w-48 flex-none bg-cover h-24" src={instruction["img"]} 
+						      {/* { instruction["img"] && <img class="block h-auto w-full lg:w-48 flex-none bg-cover h-24" src={instruction["img"]} 
                           alt="手順画像" 
                           onClick={() => document.getElementById(`step${index + 1}-image-input`).click()} 
                         />} */}
-						{/* { !instruction["img"] &&  */}
-						<img class="block h-auto w-full lg:w-48 flex-none bg-cover h-24" src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-file-upload-icon-image_1344465.jpg" 
-                          alt="手順画像" 
+						        {/* { !instruction["img"] &&  */}
+						        <ImageIcon style={{ fontSize: "100px"}} 
                           onClick={() => document.getElementById(`step${index + 1}-image-input`).click()} 
                         />
-						{/* } */}
+						
                         
                         <input
                           type="file"
@@ -298,23 +303,21 @@ const handleAddInstructionImg = async (e, index) => {
                           onChange={(e) => handleAddInstructionImg(e, index)} 
                           required
                         />
-                      </div>
-                      <div class="rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                        <div class="text-black font-bold text-xl mb-2 leading-tight">
-                          <span className="step-number">手順{index + 1}:</span>
-                        </div>
-                      </div>
-                      <Input type="text" 
+                      
+                      
+                      <Input type="text" className="w-full step-input"
                         id={`step${index + 1}-text`} 
                         name={`step${index + 1}-text`} 
                         size="sm" 
                         required 
                         value={instruction["process_explanation"]}
+                        
+
                         onChange={(e) => {
                         //   const newTexts = [...stepTexts];
                         //   newTexts[index] = e.target.value;
                         //   setStepTexts(newTexts);
-						handleAddInstructionText(e, index);
+						              handleAddInstructionText(e, index);
                         }}
                       /> 
                       {index > 0 && (
@@ -323,12 +326,14 @@ const handleAddInstructionImg = async (e, index) => {
                         </Button>
                       )}
                     </div>
+                    </div>
                   ))}
                 </div>   
-              
+              <div>
               <Button type="button" id="add-step-button" onClick={addStep} variant="contained"color="secondary">
                 + 手順を追加
               </Button>
+              </div>
 
               </div>
             

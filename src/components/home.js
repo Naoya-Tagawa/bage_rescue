@@ -30,7 +30,7 @@ function Home() {
       {showHellologo && <Hellologo />}
       <div className='bg-cover bg-center overflow-hidden' style={{ backgroundImage:`url(${bgp})` }}>
         <div className="flex flex-col  min-h-screen ">
-          <div className='border-b-2 border-stone-800 md:relative flex flex-col items-center   md:flex-row md:items-center'>
+          <div className=' md:relative flex flex-col items-center   md:flex-row md:items-center'>
             <div className="md:absolute left-5  flex flex-col ">
               <button onClick={() => {setShowHellologo(true)}}>
                 
@@ -42,7 +42,7 @@ function Home() {
             <div className="flex-grow flex justify-center">
                 <SearchBar />
             </div>
-            <div className = "md:absolute right-5">
+            <div className = "md:absolute right-5 ">
                 <Button   variant="contained" color="secondary" size="large" startIcon={<LocalPostOfficeIcon />} component={Link} to="/post" className="mr-3">
                   投稿
                 </Button>
@@ -50,7 +50,7 @@ function Home() {
             
           
           </div>
-            <p className="text-3xl font-bold text-stone-800 mt-3">最新の記事</p>
+            <p className="text-3xl font-bold text-stone-800 p-3 mt-3 border-t-2 border-stone-800">最新の記事</p>
             <RecievePosts />
           </div>
           

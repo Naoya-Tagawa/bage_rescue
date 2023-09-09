@@ -4,9 +4,7 @@ header {
     align-items: center;
   }
   
-  #logo {
-    margin-right: auto;
-  }
+  
   
   #search {
     margin-left: auto; 
@@ -65,3 +63,19 @@ header {
   #search-button {
     display: inline-block;
   }
+/* styles.css */
+/* 背景色を設定 */
+/* styles.css */
+/* 背景色を設定 */
+.step-input {
+  background-color: rgb(229 231 235);
+   /* 枠線の色を初期化 */
+  transition: border-color 0.2s ease; /* 枠線の色の変化を滑らかにする */
+}
+
+/* フォーカス時の枠線の色を設定 */
+.step-input:focus {
+  border-color: purple; /* フォーカス時の枠線の色を設定 */
+   /* フォーカス時のデフォルトのアウトラインを非表示にする */
+}
+

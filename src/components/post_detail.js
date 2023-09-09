@@ -48,7 +48,7 @@ function Detail() {
     }, []);
 
     return (
-      <img src={imgurl} alt='post' className="w-6/12" />
+      <img src={imgurl} alt='post' className="w-5/6  max-w-sm" />
     );
   }
 return (
@@ -85,7 +85,7 @@ return (
       </div>
       {post.post_instruction && post.post_instruction.map((step, index) => (
         <div key={index} className="my-10 mx-20 flex flex-col gap-4 p-4 bg-stone-800 rounded-xl shadow-md">
-          <div className=' py-8 rounded-xl w-full bg-white'>
+          <div className=' py-5 rounded-xl w-full bg-white'>
             <p className="flex flex-1 text-3xl ml-10">{index + 1}</p>
             <div className="flex justify-center items-center ">
               {Get_image(step)}
