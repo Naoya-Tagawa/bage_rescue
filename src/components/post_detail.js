@@ -8,11 +8,12 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import firebase from 'firebase/compat/app';
 import { useNavigate } from "react-router-dom";
-
+import Comment_Button from "./commentbutton";
 function Detail() {
   const location = useLocation();
   const post = location.state.post;
   const [isliked, setIsliked] = useState(false);
+  const [isContainerOverflowing, setIsContainerOverflowing] = useState(false);
   // いいね！されたときの処理
   const navigate = useNavigate();
   const returntohome = () => {
@@ -29,6 +30,9 @@ function Detail() {
     // console.log(post.like_amount);
     setIsliked(!isliked);
   };
+  useEffect(() => {
+    console.log(post);
+  },[post]);
 
   function Get_image(post) {
     const gsReference = ref(storage, "gs://bage-rescue.appspot.com/" + post.img_url);
@@ -41,6 +45,7 @@ function Detail() {
       getDownloadURL(gsReference)
         .then((url) => {
           setImgurl(url);
+          
         })
         .catch((error) => {
           console.log(error);
@@ -51,6 +56,22 @@ function Detail() {
       <img src={imgurl} alt='post' className="object-fill" />
     );
   }
+// コンテナがはみ出るかどうかをチェックする関数
+  const checkContainerOverflow = () => {
+    const container = document.querySelector('.comment-container'); // コンテナ要素のクラスを設定してください
+    if (container) {
+      setIsContainerOverflowing(container.scrollWidth > container.clientWidth);
+    }
+    };
+  useEffect(() => {
+  checkContainerOverflow();
+  // ウィンドウのリサイズ時にもチェック
+  window.addEventListener('resize', checkContainerOverflow);
+  return () => {
+    // クリーンアップ時にイベントリスナーを削除
+    window.removeEventListener('resize', checkContainerOverflow);
+  };
+  }, [post.comment]);
 return (
   <div className='bg-cover bg-center overflow-hidden font-bold text-stone-800 min-h-screen' style={{ backgroundImage: `url(${bgp})` }}>
     <div className="border-b-2 border-stone-800">
@@ -118,9 +139,9 @@ return (
             <p>コメント</p>
           </div>
         </div>
-        <div className="flex flex-nowrap justify-center overflow-x-auto overflow-y-auto max-h-[330px]" >
+        <div className={`comment-container flex flex-nowrap ${isContainerOverflowing ? 'justify-start' : 'justify-center'} mx-auto overflow-y-auto max-h-[330px]`}  >
           {post.comment.map((step, index) => (
-            <div key={index} className="my-10 mx-5 gap-4 p-4 bg-stone-800 rounded-xl shadow-md w-[1000px]">
+            <div key={index} className="my-10 mx-5 gap-4 p-4 bg-stone-800 rounded-xl shadow-md ">
               <div className=' py-8 rounded-xl bg-white'>
                 <div className="flex flex-row">
                   <p className=" text-lg md:text-3xl text-left ml-2">ID:{step.user_id}</p>
@@ -135,6 +156,8 @@ return (
         </div>
       </div>
     )}
+    <Comment_Button post_data={post}/>
+    
   </div>
 );
 }

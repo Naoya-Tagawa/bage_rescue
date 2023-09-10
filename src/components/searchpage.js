@@ -20,8 +20,6 @@ function SearchPage() {
 
 
   const returntohome = () => {
-    console.log(result);
-    console.log(getpost);
     navigate('/');
   };
 

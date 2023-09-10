@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Container, Typography } from "@mui/material";
-import { Input, Textarea } from '@mui/joy';
+import { Button, Container } from "@mui/material";
+import { Input} from '@mui/joy';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/post.css';
 import SearchBar from "./searchbar";
@@ -20,7 +20,7 @@ function Post() {
   const [thumbnailFile, setThumbnailFile] =  useState("");
   const [thumbnailUrl, setThumbnailUrl] =  useState("");
   const [instructions, setInstructions] = useState([{}]);
-  const [instructionImgs, setInstructionImgs] = useState([]);
+  {/*const [instructionImgs, setInstructionImgs] = useState([]);*/}
   const [selectedFile, setSelectedFile] = useState(null);
 //   {img_url:"", process_explanation:"",process_num:1}
   const date = new Date();
@@ -55,7 +55,7 @@ const handleAddInstructionText = (e, index) => {
 	let newInstruction = instructions[index];
 	newInstruction["process_explanation"] = e.target.value;
 	setInstructions(
-		instructions.map((instruction, i) => (i == index ? newInstruction : instruction))
+		instructions.map((instruction, i) => (i === index ? newInstruction : instruction))
 	)
 	console.log(instructions);
 }
@@ -76,7 +76,7 @@ const handleAddInstructionImg = async (e, index) => {
 		newInstruction["img"] = selectedFile;
 		console.log("added selectedFile = " + selectedFile);
 		setInstructions(
-			instructions.map((instruction, i) => (i == index ? newInstruction : instruction))
+			instructions.map((instruction, i) => (i === index ? newInstruction : instruction))
 		);
 	}
 }
@@ -105,7 +105,7 @@ const handleAddInstructionImg = async (e, index) => {
 	let img_files = []
 	img_files.push(thumbnailFile);
 	
-	if (!(instructions.length==1 && instructions[0]["process_explanation"] == "")) {
+	if (!(instructions.length===1 && instructions[0]["process_explanation"] === "")) {
 		post_instructions = instructions.map((instruction, index) => ({
 			process_num: index + 1,
 			process_explanation: instruction["process_explanation"],
@@ -205,6 +205,7 @@ const handleAddInstructionImg = async (e, index) => {
                       class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-1/2 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       rows="4"
                       value={overview}
+                      multiline  // このプロパティを追加
                       onChange={(e) => setOverview(e.target.value)}>
                     </textarea>
                   
@@ -310,6 +311,10 @@ const handleAddInstructionImg = async (e, index) => {
                         name={`step${index + 1}-text`} 
                         size="sm" 
                         required 
+                        multiline  // このプロパティを追加
+                        rows={4}   // このプロパティを設定
+                        
+                        
                         value={instruction["process_explanation"]}
                         
 
