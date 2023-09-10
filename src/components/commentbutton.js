@@ -1,20 +1,24 @@
 import { Button } from "@mui/material";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { updateDoc, doc,getDoc } from "firebase/firestore";
-import { db } from "../firebase";
 import { useState } from "react";
-
+import firebase from 'firebase/compat/app';
 function Comment_Button({ post_data }) {
   const [comment_content, set_comment_content] = useState("");
   const [is_comment, setis_comment] = useState(false);
 
   async function AddComment() {
     try {
-      const postDocRef = doc(db, "post", post_data.post_id);
+      console.log(post_data)
+      console.log(post_data.post_id)
+      const db = firebase.firestore();
+      const postDocRef = db.collection('post').doc(post_data.post_id);
+      const commentsArray = post_data.comment || []; // comments フィールドがない場合は空の配列を作成
+      console.log(postDocRef)
+      
+    
 
-      // データベースから現在のコメントリストを取得
-      const postDocSnap = await getDoc(postDocRef);
-      const currentComments = postDocSnap.data().comment || [];
+      
 
       // 新しいコメントを追加
       const newComment = {
@@ -22,11 +26,12 @@ function Comment_Button({ post_data }) {
         comment_content: comment_content,
       };
 
-      const updatedComments = [...currentComments, newComment];
+      commentsArray.push(newComment)
+      console.log(commentsArray)
 
       // コメントを更新
-      await updateDoc(postDocRef, {
-        comment: updatedComments,
+      postDocRef.update({
+        comment:commentsArray,
       });
 
       // コメント内容をクリア
