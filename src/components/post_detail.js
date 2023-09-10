@@ -156,7 +156,9 @@ return (
         </div>
       </div>
     )}
-    <Comment_Button post_data={post}/>
+    <div className="mt-10">
+      <Comment_Button post_data={post}/>
+    </div>
     
   </div>
 );
